@@ -7,6 +7,10 @@ extern "C"
 {
 #endif
 
+   void Init_Sensor(void);
+   char Read_Sensor(char Sensor);
+
+
 #if defined(__cplusplus)
 }
 #endif
