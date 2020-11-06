@@ -1,4 +1,11 @@
 #include "motor.h"
+#include "BT.h"
+
+#define RX 2
+#define TX 3
+
+SoftwareSerial mySerial(RX,TX); // RX, TX
+
 
 void setup() {
   // put your setup code here, to run once:
