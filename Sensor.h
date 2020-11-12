@@ -8,8 +8,8 @@ extern "C"
 #endif
 
    void Init_Sensor(void);
-   char Read_Sensor(char Sensor);
-
+   float Read_Sensor(char Sensor);
+   void Clear_sensor(void);
 
 #if defined(__cplusplus)
 }
