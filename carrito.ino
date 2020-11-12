@@ -11,6 +11,23 @@
 float PID(float);
 unsigned char testspeed = 10;
 
+void test (void)
+{
+  float result;
+  result = test_sensor();
+  Serial.println(result);
+  Motor_Forward(testspeed,MOTOR1);
+  if( 249 > testspeed)
+  {
+   testspeed += 10;
+  }
+  else
+  {
+    testspeed = 10;
+  }
+}
+
+
 
 /*Vrpm=( #pulsos_en_1_seg / resolucion del encoder )*60;*/
 void setup() {
@@ -27,10 +44,7 @@ void setup() {
 
 void loop() {
  
- float result;
- result = test_sensor();
- Serial.println(result);
- Motor_Forward(testspeed,MOTOR1);
+ test();
 
   /*float data;
   float speed;
