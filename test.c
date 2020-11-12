@@ -1,15 +1,21 @@
+#include "Arduino.h" //Permite utilizar los comandos de Arduino
 #include "test.h"
+#include "motor.h"
+
+#define TIME 100 //microseconds
+#define MIDSPEED 50
+
+#define MOTOR1 0
+#define MOTOR2 1
 
 float test_sensor(void)
 {
   int i=0;
   float distance;
-  Serial.begin(9600);
-  Serial.println("test Sensor");
   for (i = 0; i < 100; i++) {
   delay(100);
   distance = CalculateDistance();
-  return distance
+  return distance;
 }
 
 }
