@@ -24,16 +24,12 @@ void test_motor1 (void)
 {
   Motor_Forward(MIDSPEED,MOTOR1);
   delay(10000);
-  Motor_Backward(MIDSPEED,MOTOR1);
-  delay(10000);
   Motor_Stop(MOTOR1);
-  delay(1000);
+
 }
 void test_motor2 (void)
 {
   Motor_Forward(MIDSPEED,MOTOR2);
-  delay(10000);
-  Motor_Backward(MIDSPEED,MOTOR2);
   delay(10000);
   Motor_Stop(MOTOR2);
   delay(1000);
@@ -43,11 +39,6 @@ void test_motors (void)
   Motor_Forward(MIDSPEED,MOTOR2);
   Motor_Forward(MIDSPEED,MOTOR1);
   delay(10000);
-  Motor_Backward(MIDSPEED,MOTOR2);
-  Motor_Backward(MIDSPEED,MOTOR1);
-  delay(10000);
   Motor_Stop(MOTOR2);
   Motor_Stop(MOTOR1);
-
-  delay(1000);
 }
