@@ -2,6 +2,7 @@
 #include "dataConvertion.h"
 #include "motor.h"
 #include "test.h"
+
 #include "Arduino.h" //Permite utilizar los comandos de Arduino
 
 #define MOTOR1 0
@@ -12,6 +13,7 @@
 
 unsigned char testspeed = 10;
 
+BT bt(4,5);
 float test (void)
 {
   float result;
@@ -32,7 +34,7 @@ void Start_system(void)
 {
    Start_motors();
    Start_data_convertion();
-   Bluetooth_inits();
+   bt.Bluetooth_inits();
 }
 
 float read_speed(void)
@@ -48,7 +50,7 @@ void response(float out_data)
   int Speed;
   char BT_datareaded;
   Speed =1;
-  BT_datareaded = Bluetooth_read();
+  BT_datareaded = bt.Bluetooth_read();
   if(BT_STOPSIGNAL == BT_datareaded)
   {
     Motor_Stop(MOTOR1);

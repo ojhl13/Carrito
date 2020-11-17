@@ -10,12 +10,13 @@ void BT::Bluetooth_inits(void)
 
 char BT::Bluetooth_read(void)
 {
-  char Data;
+  char Data_readed;
+  Data_readed=0;
   if (Bluetooth.available())
       {
-        Data = Bluetooth.read();
+        Data_readed= Bluetooth.read();
       }
-  return Data;
+  return Data_readed;
 }
 
 void BT::Bluetooth_sent(char Data)
