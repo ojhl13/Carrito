@@ -6,9 +6,9 @@
 extern "C"
 {
 #endif
-float convertDistance2speed(float distance);
-void Start_dataConvention (void);
-float CalculateDistance();
+float convert_distance2speed(float distance);
+void Start_data_convertion (void);
+float Calculate_distance(void);
 #if defined(__cplusplus)
 }
 #endif

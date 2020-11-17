@@ -10,13 +10,13 @@ float lastdistance;
 
 
 
-void Start_data_convention (void)
+void Start_data_convertion (void)
 {
   lastdistance=0;
   Init_Sensor();
 }
 
-float Calculate_distance()
+float Calculate_distance(void)
 {
     float distance;
     distance = PI* DIAMETER_WHEEL *(Read_Sensor(1)/NUMOFNOTCHES); // distance traveled

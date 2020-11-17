@@ -1,83 +1,70 @@
 #include "motor.h"
 #include "BT.h"
-#include "dataConvertion.h"
-#include "test.h"
-#define TIME 100 //microseconds
-#define MIDSPEED 50
+#include "blackbox.h"
 
-#define MOTOR1 0
-#define MOTOR2 1
+
+
+#define kp (float)2
+#define ki (float)5
+#define kd (float)1
 
 float PID(float);
-unsigned char testspeed = 10;
 
-void test (void)
-{
-  float result;
-  result = test_sensor();
-  Serial.println(result);
-  Motor_Forward(testspeed,MOTOR1);
-  if( 249 > testspeed)
-  {
-   testspeed += 10;
-  }
-  else
-  {
-    testspeed = 10;
-  }
-}
-
-
-
-/*Vrpm=( #pulsos_en_1_seg / resolucion del encoder )*60;*/
 void setup() {
-  Serial.begin(9600);
-  Start_motors();
-  Start_dataConvention();
-  test_motor1();
-  test_motor2();
-  Motor_Stop(MOTOR2);
-  Motor_Stop(MOTOR1);
-  test_motors();
-   Motor_Forward(testspeed,MOTOR1);  
+
+  Serial.begin(9600);//test
+  Start_system();
+
 }
 
 void loop() {
- 
- test();
+#ifdef DEBUG
+float test
+ test =test();
+ Serial.println(test);
+#endif
+#ifndef DEBUG
 
-  /*float data;
-  float speed;
+  float Speed;
   float out;
   float ref;// poner las unidades
   float error;
-  ref=0.0;
-
-
-   //obtain the information of the sensor and convert to speed in (medidas)
-  data = read_sensor();
-  speed = convertDistance2speed(data);
+  ref=1.0;
+  Speed = read_speed();
+  // read python
    //calcular el error
-  error = ref - speed ;
+  error = ref - Speed ;
   // proceso de control
   out=PID(error);
-
   response(out);
+  //Sent to pyton
+  #endif
 
-  //add delay*/
   }
 
-/*
+
 float PID(float error)
 {
+   static float previousTime;
+   static float lastError;
+   static float cumError;
    float result;
-   //put your code here
-   /*
-   P
-   I
-   D
-   result = suma de los tres
-   ** /
-   return result;
+   float currentTime;
+   float elapsedTime;
+   float rateError;
+
+
+
+   currentTime = millis(); //get current time
+   elapsedTime = (float)(currentTime - previousTime); //compute time elapsed from previous computation
+
+  cumError += error * elapsedTime; // compute integral
+  rateError = (error - lastError)/elapsedTime; // compute derivative
+
+  result = kp*error + ki*cumError + kd*rateError; //PID output
+
+  lastError = error; //remember current error
+  previousTime = currentTime; //remember current time
+
+   return result;//have function return the PID output
 }
-*/

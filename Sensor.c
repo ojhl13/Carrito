@@ -20,6 +20,7 @@ float Read_Sensor(char Sensor)
   return rune;
 }
 
-void Clear_sensor(void) {
+void Clear_sensor(void) 
+{
   rune = 0;
 }

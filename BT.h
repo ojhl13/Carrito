@@ -21,7 +21,6 @@ class BT
   void Bluetooth_sent(char Data);
   void Bluetooth_sent_float(float Data);
 
-
 };
 
 
