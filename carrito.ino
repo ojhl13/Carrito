@@ -2,6 +2,7 @@
 #include "BT.h"
 #include "blackbox.h"
 
+//#define DEBUG // use this to test the motors and the sensor
 
 
 #define kp (float)2
@@ -11,10 +12,12 @@
 float PID(float);
 
 void setup() {
-
+#ifdef DEBUG
   Serial.begin(9600);//test
+#endif
+#ifndef DEBUG
   Start_system();
-
+#endif
 }
 
 void loop() {
