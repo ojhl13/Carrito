@@ -3,6 +3,7 @@
 #include "motor.h"
 #include "test.h"
 
+
 #include "Arduino.h" //Permite utilizar los comandos de Arduino
 
 #define MOTOR1 0
@@ -13,13 +14,21 @@
 
 unsigned char testspeed = 10;
 
-BT bt(4,5);
+void Start_system(void)
+{
+   Start_motors();
+   Start_data_convertion();
+   
+   
+}
+
 float test (void)
 {
   float result;
   Motor_Forward(testspeed,MOTOR1);
+  Motor_Forward(testspeed,MOTOR2);
   result = test_sensor();
-  if( 249 > testspeed)
+  if( 239 > testspeed)
   {
    testspeed += 10;
   }
@@ -30,12 +39,15 @@ float test (void)
   return result;
 }
 
-void Start_system(void)
+float test_sensor(void)
 {
-   Start_motors();
-   Start_data_convertion();
-   bt.Bluetooth_inits();
+  float distance;
+  distance = Calculate_distance();
+  return distance;
+
 }
+
+
 
 float read_speed(void)
 {
@@ -50,7 +62,8 @@ void response(float out_data)
   int Speed;
   char BT_datareaded;
   Speed =1;
-  BT_datareaded = bt.Bluetooth_read();
+  BT_datareaded=0;
+ 
   if(BT_STOPSIGNAL == BT_datareaded)
   {
     Motor_Stop(MOTOR1);
@@ -63,6 +76,19 @@ void response(float out_data)
     Motor_Forward(Speed,MOTOR2);
   }
   delay(100);
+}
+void sent(float data)
+{
+  data = data; 
+}
+
+void test_motors (void)
+{
+  Motor_Forward(MIDSPEED,MOTOR2);
+  Motor_Forward(MIDSPEED,MOTOR1);
+  delay(10000);
+  Motor_Stop(MOTOR2);
+  Motor_Stop(MOTOR1);
 }
 
 /*

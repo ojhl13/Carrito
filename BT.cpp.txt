@@ -12,10 +12,10 @@ char BT::Bluetooth_read(void)
 {
   char Data_readed;
   Data_readed=0;
-  if (Bluetooth.available())
-      {
+  //if (Bluetooth.available())
+    //  {
         Data_readed= Bluetooth.read();
-      }
+     // }
   return Data_readed;
 }
 
@@ -31,7 +31,8 @@ void BT::Bluetooth_sent(char Data)
 void BT::Bluetooth_sent_float(float Data)
 {
   if (Bluetooth.available())
+  
       {
-       Bluetooth.write( Data );
+       Bluethooth.write(Data)
       }
 }

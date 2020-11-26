@@ -17,6 +17,10 @@ void Init_Sensor(void)
 
 float Read_Sensor(char Sensor)
 {
+  if(1 == Sensor)
+  {
+  return rune;
+  }
   return rune;
 }
 

@@ -1,9 +1,4 @@
-#include "motor.h"
-//#include "BT.h"
 #include "blackbox.h"
-
-//#define DEBUG // use this to test the motors and the sensor
-
 
 #define kp (float)2
 #define ki (float)5
@@ -12,21 +7,28 @@
 float PID(float);
 
 void setup() {
-#ifdef DEBUG
-  Serial.begin(9600);//test
-#endif
-#ifndef DEBUG
+
+  Serial.begin(9600);
+  Serial.println("Is live");
   Start_system();
-#endif
+  test_motors();
 }
 
 void loop() {
-#ifdef DEBUG
-float test
- test =test();
- Serial.println(test);
-#endif
-#ifndef DEBUG
+
+float res;
+int counter =0;
+if (100 > counter)
+{
+ res =test();
+ Serial.println(res);
+ 
+ counter++;
+}
+
+
+/*
+
 
   float Speed;
   float out;
@@ -42,7 +44,7 @@ float test
   response(out);
   //Sent to pyton
   #endif
-
+*/
   }
 
 
