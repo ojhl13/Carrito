@@ -8,4 +8,5 @@
   void sent(float data);
   void test_motors (void);
   float test_sensor(void);
+  void Stop_motors(void);
 #endif

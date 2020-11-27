@@ -29,7 +29,7 @@ void motor_init(int motor,int Pin_A_motor,int Pin_B_motor)
 }
 void Motor_Forward(int Speed,int motor)
 {
-   analogWrite(motors[motor].Pin_B_motor,255- Speed );
+   analogWrite(motors[motor].Pin_B_motor,(255- Speed) );
   digitalWrite(motors[motor].Pin_A_motor, LOW);
 }
 void Motor_Backward(int Speed, int motor)

@@ -8,11 +8,11 @@
 
 #define MOTOR1 0
 #define MOTOR2 1
-#define TIME 100 //microseconds
-#define MIDSPEED 50
+#define TIME 10 //microseconds
+#define MIDSPEED 10
 #define BT_STOPSIGNAL 'w'
 
-unsigned char testspeed = 10;
+unsigned char testspeed = 150;
 
 void Start_system(void)
 {
@@ -28,21 +28,23 @@ float test (void)
   Motor_Forward(testspeed,MOTOR1);
   Motor_Forward(testspeed,MOTOR2);
   result = test_sensor();
-  if( 239 > testspeed)
+  if(10 < testspeed)
   {
-   testspeed += 10;
+   testspeed -= 1;
   }
   else
   {
-    testspeed = 10;
+    testspeed = 15;
   }
+  
+  delay(100);
   return result;
 }
 
 float test_sensor(void)
 {
   float distance;
-  distance = Calculate_distance();
+  distance = read_speed();
   return distance;
 
 }
@@ -59,23 +61,23 @@ float read_speed(void)
 
 void response(float out_data)
 {
-  int Speed;
+  int Speed=125;
   char BT_datareaded;
   Speed =1;
   BT_datareaded=0;
- 
-  if(BT_STOPSIGNAL == BT_datareaded)
+  Speed =map(out_data,0,1000,0,255);
+  /*if(BT_STOPSIGNAL == BT_datareaded)
   {
     Motor_Stop(MOTOR1);
     Motor_Stop(MOTOR2);
   }
   else
-  {
+  {*/
     /*convert the output of PID to data to PWM*/
     Motor_Forward(Speed,MOTOR1);
     Motor_Forward(Speed,MOTOR2);
-  }
-  delay(100);
+  //}
+  delay(10);
 }
 void sent(float data)
 {
@@ -87,6 +89,11 @@ void test_motors (void)
   Motor_Forward(MIDSPEED,MOTOR2);
   Motor_Forward(MIDSPEED,MOTOR1);
   delay(10000);
+  Stop_motors();
+}
+
+void Stop_motors(void)
+{
   Motor_Stop(MOTOR2);
   Motor_Stop(MOTOR1);
 }

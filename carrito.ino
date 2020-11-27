@@ -1,50 +1,56 @@
 #include "blackbox.h"
 
-#define kp (float)2
-#define ki (float)5
+#define kp (float)10
+#define ki (float)2
 #define kd (float)1
+#define REFSPEED 10
+
+float Speed;
+float out;
+float ref;// poner las unidades
+float error;
+unsigned char counter =0;
 
 float PID(float);
 
 void setup() {
-
+  float res;
   Serial.begin(9600);
   Serial.println("Is live");
   Start_system();
   test_motors();
-}
-
-void loop() {
-
-float res;
-int counter =0;
-if (100 > counter)
+  
+while( counter <=  150)
 {
  res =test();
- Serial.println(res);
- 
+ Serial.print(res);
+ Serial.print('\t');
+  Serial.println(counter,DEC); 
  counter++;
 }
 
+Serial.println("DONE");
+Stop_motors();
+ref=REFSPEED;
+}
 
-/*
-
-
-  float Speed;
-  float out;
-  float ref;// poner las unidades
-  float error;
-  ref=1.0;
+void loop() {
+  /*
+if(1000 > counter){
   Speed = read_speed();
-  // read python
+  Serial.print(Speed);
+  Serial.print("\t");
+    // read python
    //calcular el error
   error = ref - Speed ;
   // proceso de control
   out=PID(error);
-  response(out);
+  Serial.println(out);
+  response(out); 
   //Sent to pyton
-  #endif
-*/
+}
+*/  
+
   }
 
 

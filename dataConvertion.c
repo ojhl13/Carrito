@@ -3,7 +3,8 @@
 #include "Sensor.h"
 
 //#define PI 3.1416
-#define DIAMETER_WHEEL 7 //cm
+#define US2SEC 1000000
+#define DIAMETER_WHEEL .07 //m
 #define NUMOFNOTCHES 20
 #define TIME 100
 float lastdistance;
@@ -27,8 +28,8 @@ float Calculate_distance(void)
 float convert_distance2speed(float distance)
 {
   float Speed;
-  // pero no se en que medidas salen?? distancia esta en cm  y tiempo esta en us entonces creo debo ajustar las unidades para que sea  m/s
-  Speed = (distance  - lastdistance)/TIME; 
+
+  Speed = (( lastdistance- distance)/TIME)*US2SEC; 
   lastdistance = distance;
   return Speed;
 }
