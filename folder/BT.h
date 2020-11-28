@@ -12,10 +12,10 @@
 class BT
 {
   private:
-  SoftwareSerial Bluetooth; // RX, TX
+  SoftwareSerial HC05; // RX, TX
 
   public:
-  BT(int TX, int RX): Bluetooth(TX,RX){}
+  BT(int TX, int RX): HC05(TX,RX){}
   void Bluetooth_inits(void);
   char Bluetooth_read(void);
   void Bluetooth_sent(char Data);

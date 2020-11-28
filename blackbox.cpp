@@ -3,7 +3,6 @@
 #include "motor.h"
 #include "test.h"
 
-
 #include "Arduino.h" //Permite utilizar los comandos de Arduino
 
 #define MOTOR1 0
@@ -18,8 +17,8 @@ void Start_system(void)
 {
    Start_motors();
    Start_data_convertion();
-   
-   
+
+
 }
 
 float test (void)
@@ -36,7 +35,7 @@ float test (void)
   {
     testspeed = 15;
   }
-  
+
   delay(100);
   return result;
 }
@@ -65,7 +64,7 @@ void response(float out_data)
   char BT_datareaded;
   Speed =1;
   BT_datareaded=0;
-  Speed =map(out_data,0,1000,0,255);
+  Speed =map(out_data,0,1000,0,150);
   /*if(BT_STOPSIGNAL == BT_datareaded)
   {
     Motor_Stop(MOTOR1);
@@ -77,11 +76,11 @@ void response(float out_data)
     Motor_Forward(Speed,MOTOR1);
     Motor_Forward(Speed,MOTOR2);
   //}
-  delay(10);
+  delay(100);
 }
 void sent(float data)
 {
-  data = data; 
+  data = data;
 }
 
 void test_motors (void)

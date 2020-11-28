@@ -20,7 +20,7 @@ void Start_data_convertion (void)
 float Calculate_distance(void)
 {
     float distance;
-    distance = PI* DIAMETER_WHEEL *(Read_Sensor(1)/NUMOFNOTCHES); // distance traveled
+    distance = PI* DIAMETER_WHEEL *(Read_Sensor(1)/NUMOFNOTCHES); // distance traveled M
     Clear_sensor();
     return distance;
 }
@@ -29,7 +29,7 @@ float convert_distance2speed(float distance)
 {
   float Speed;
 
-  Speed = (( lastdistance- distance)/TIME)*US2SEC; 
+  Speed = (( distance - lastdistance)/TIME)*US2SEC; /*m/s*/
   lastdistance = distance;
   return Speed;
 }

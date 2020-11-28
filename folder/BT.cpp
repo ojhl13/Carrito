@@ -5,7 +5,7 @@
 void BT::Bluetooth_inits(void)
 {
 
-    Bluetooth.begin(9600);//Iniciar la comunicacion a 9600
+    HC05.begin(9600);//Iniciar la comunicacion a 9600
 }
 
 char BT::Bluetooth_read(void)
@@ -14,25 +14,25 @@ char BT::Bluetooth_read(void)
   Data_readed=0;
   //if (Bluetooth.available())
     //  {
-        Data_readed= Bluetooth.read();
+        Data_readed= HC05.read();
      // }
   return Data_readed;
 }
 
 void BT::Bluetooth_sent(char Data)
 {
-  if (Bluetooth.available())
+  if (HC05.available())
       {
-       Bluetooth.write( Data );
+       HC05.write( Data );
       }
 }
 
 
 void BT::Bluetooth_sent_float(float Data)
 {
-  if (Bluetooth.available())
+  if (HC05.available())
   
       {
-       Bluethooth.write(Data)
+       HC05.write(Data)
       }
 }
