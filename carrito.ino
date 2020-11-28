@@ -1,8 +1,8 @@
 #include "blackbox.h"
 
-#define kp (float) 5
-#define ki (float) 3
-#define kd (float) 20
+#define kp (float) 0.0000001
+#define ki (float) 0.00000001
+#define kd (float) .000001
 #define REFSPEED 10
 
 float Speed;
@@ -20,7 +20,7 @@ void setup() {
   Start_system();
   
   //test_motors();
-  
+/*  
 while( counter <=  150)
 {
  res =test();
@@ -32,13 +32,14 @@ while( counter <=  150)
 
 Serial.println("DONE");
 Stop_motors();
+*/
 ref=REFSPEED;
 }
 
 void loop() {
-  /*
-if(1000 > counter){
-  Speed = read_speed();
+  
+
+  Speed = read_speed();//sin velocidad no´PID
   Serial.print(Speed);
   Serial.print("\t");
     // read python
@@ -51,9 +52,9 @@ if(1000 > counter){
   Serial.println(out);
   response(out); 
   //Sent to pyton
-//}
+
   
-*/
+
   }
 
 
@@ -69,7 +70,7 @@ float PID(float error)
 
 
 
-   currentTime = millis(); //get current time
+   currentTime = millis()*1000; //get current time
    elapsedTime = (float)(currentTime - previousTime); //compute time elapsed from previous computation
 
   cumError += error * elapsedTime; // compute integral
