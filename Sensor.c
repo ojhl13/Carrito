@@ -3,7 +3,7 @@
 
 #define SENSOR_PIN 3
 volatile float rune = 0;
-
+float lastrune;
 void doEncoder(){
   rune++;
 
@@ -12,16 +12,26 @@ void doEncoder(){
 void Init_Sensor(void)
 {
   attachInterrupt(digitalPinToInterrupt(SENSOR_PIN), doEncoder, CHANGE);
-
+  lastrune=0;
 }
 
 float Read_Sensor(char Sensor)
 {
+  float result;
   if(1 == Sensor)
   {
-  return rune;
+    if (lastrune != rune)
+    {
+    result = rune -lastrune;
+    lastrune=rune;
+    }
+    else
+    {
+      result = rune;
+    }
+    return result;
   }
-  return rune;
+    
 }
 
 void Clear_sensor(void) 

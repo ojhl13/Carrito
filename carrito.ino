@@ -6,6 +6,7 @@
 #define REFSPEED 10
 
 float Speed;
+float LastSpeed;
 float out;
 float ref;// poner las unidades
 float error;
@@ -17,41 +18,25 @@ void setup() {
   
   Serial.begin(9600);
   Serial.println("Is live");
-  Start_system();
-  
-  //test_motors();
-/*  
-while( counter <=  150)
-{
- res =test();
- Serial.print(res);
- Serial.print('\t');
-  Serial.println(counter,DEC); 
- counter++;
-}
-
-Serial.println("DONE");
-Stop_motors();
-*/
-ref=REFSPEED;
+  Start_system(); 
+  ref=REFSPEED;
 }
 
 void loop() {
   
 
-  Speed = read_speed();//sin velocidad no´PID
-  Serial.print(Speed);
-  Serial.print("\t");
-    // read python
+  Speed = read_speed();
+  if(0 != Speed)
+  {
+   //Speed = Serial.read(); // read python
    //calcular el error
   error = ref - Speed ;
-  Serial.print(error);
-  Serial.print("\t");
   // proceso de control
   out=PID(error);
-  Serial.println(out);
+  
   response(out); 
-  //Sent to pyton
+  Serial.println(out);//Sent to pyton 
+  }
 
   
 

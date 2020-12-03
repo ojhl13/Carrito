@@ -21,7 +21,7 @@ float Calculate_distance(void)
 {
     float distance;
     distance = PI* DIAMETER_WHEEL *(Read_Sensor(1)/NUMOFNOTCHES); // distance traveled M
-    Clear_sensor();
+    
     return distance;
 }
 
